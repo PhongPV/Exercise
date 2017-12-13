@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { MaterialCommunityIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
 
 const logo = require('../img/icon_logo.png');
@@ -12,6 +12,7 @@ export default class Login extends Component {
 			shadowRadius: 1,
 			elevation: 3,
 		};
+		const navigation = this.props.navigation;
 		return (
 			<View style={{ flex: 1, backgroundColor: '#FFF', alignItems: 'center' }}>
 				<View style={[styles.wrapImage, shadowStyle]}>
@@ -44,15 +45,12 @@ export default class Login extends Component {
 							/>
 						</View>
 						<Text style={styles.forgotPass}>Forgot Password?</Text>
-						<TouchableOpacity
-							style={styles.buttonLogin}
-							onPress={() => this.navigation.navigate('Register')}
-						>
+						<TouchableOpacity style={styles.buttonLogin}>
 							<Text style={{ fontSize: 18, color: 'dodgerblue', marginTop: 10 }}>LOGIN</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
-				<Contact name="Register" />
+				<Contact name="Register" navigation={this.props.navigation} />
 			</View>
 		);
 	}
@@ -100,31 +98,5 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		elevation: 3,
 		shadowOpacity: 0.5,
-	},
-	wrapOrWith: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		marginTop: 20,
-	},
-	wrapContact: {
-		flexDirection: 'row',
-		width: 250,
-		justifyContent: 'space-around',
-		marginTop: 10,
-	},
-	contact: {
-		width: 50,
-		height: 50,
-		borderRadius: 25,
-		alignItems: 'center',
-		justifyContent: 'center',
-		elevation: 3,
-		shadowOpacity: 0.5,
-	},
-	register: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		marginTop: 70,
 	},
 });

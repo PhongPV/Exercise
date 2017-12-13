@@ -4,6 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 export default class Contact extends Component {
 	render() {
+		const navigation = this.props.navigation;
 		return (
 			<View>
 				<View style={styles.wrapOrWith}>
@@ -26,7 +27,7 @@ export default class Contact extends Component {
 
 				<View style={styles.register}>
 					<Text>Don'n have an account? </Text>
-					<TouchableOpacity>
+					<TouchableOpacity onPress={() => navigation.navigate(`${this.props.name}`)}>
 						<Text style={{ color: 'dodgerblue' }}> {this.props.name}</Text>
 					</TouchableOpacity>
 				</View>
@@ -60,6 +61,6 @@ const styles = StyleSheet.create({
 	register: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 70,
+		marginTop: 30,
 	},
 });

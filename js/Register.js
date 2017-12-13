@@ -57,14 +57,11 @@ export default class Register extends Component {
 							underlineColorAndroid="transparent"
 						/>
 					</View>
-					<TouchableOpacity
-						style={styles.buttonRegister}
-						onPress={() => this.navigation.navigate('Register')}
-					>
+					<TouchableOpacity style={styles.buttonRegister}>
 						<Text style={{ color: 'dodgerblue', marginTop: 15 }}>REGISTER</Text>
 					</TouchableOpacity>
 				</View>
-				<Contact name="Login" />
+				<Contact name="Login" navigation={this.props.navigation} />
 			</View>
 		);
 	}
