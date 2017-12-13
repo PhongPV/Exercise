@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'reac
 import { MaterialCommunityIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
 
 const logo = require('../img/icon_logo.png');
+import Contact from './Contact';
 
 export default class Login extends Component {
 	render() {
@@ -43,36 +44,15 @@ export default class Login extends Component {
 							/>
 						</View>
 						<Text style={styles.forgotPass}>Forgot Password?</Text>
-						<TouchableOpacity style={styles.buttonLogin}>
+						<TouchableOpacity
+							style={styles.buttonLogin}
+							onPress={() => this.navigation.navigate('Register')}
+						>
 							<Text style={{ fontSize: 18, color: 'dodgerblue', marginTop: 10 }}>LOGIN</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
-
-				<View style={styles.wrapOrWith}>
-					<View style={{ backgroundColor: 'gray', width: 100, height: 2, marginRight: 5 }} />
-					<Text>Or with</Text>
-					<View style={{ backgroundColor: 'gray', width: 100, height: 2, marginLeft: 5 }} />
-				</View>
-
-				<View style={styles.wrapContact}>
-					<View style={styles.contact}>
-						<FontAwesome name="facebook" color="dodgerblue" size={16} />
-					</View>
-					<View style={styles.contact}>
-						<FontAwesome name="google-plus" color="red" size={16} />
-					</View>
-					<View style={styles.contact}>
-						<FontAwesome name="twitter" color="dodgerblue" size={16} />
-					</View>
-				</View>
-
-				<View style={styles.register}>
-					<Text>Don'n have an account? </Text>
-					<TouchableOpacity>
-						<Text style={{ color: 'dodgerblue' }}> Register</Text>
-					</TouchableOpacity>
-				</View>
+				<Contact name="Register" />
 			</View>
 		);
 	}
@@ -100,6 +80,7 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-start',
 	},
 	inputWrap: {
+		height: 35,
 		flexDirection: 'row',
 		borderRadius: 2,
 		width: 300,
