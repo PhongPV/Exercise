@@ -14,19 +14,19 @@ export default class Contact extends Component {
 				</View>
 
 				<View style={styles.wrapContact}>
-					<View style={styles.contact}>
+					<TouchableOpacity style={styles.contact}>
 						<FontAwesome name="facebook" color="dodgerblue" size={16} />
-					</View>
-					<View style={styles.contact}>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.contact}>
 						<FontAwesome name="google-plus" color="red" size={16} />
-					</View>
-					<View style={styles.contact}>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.contact}>
 						<FontAwesome name="twitter" color="dodgerblue" size={16} />
-					</View>
+					</TouchableOpacity>
 				</View>
 
 				<View style={styles.register}>
-					<Text>Don'n have an account? </Text>
+					<Text>Don't have an account?</Text>
 					<TouchableOpacity onPress={() => navigation.navigate(`${this.props.name}`)}>
 						<Text style={{ color: 'dodgerblue' }}> {this.props.name}</Text>
 					</TouchableOpacity>

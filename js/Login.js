@@ -44,7 +44,10 @@ export default class Login extends Component {
 								underlineColorAndroid="transparent"
 							/>
 						</View>
-						<Text style={styles.forgotPass}>Forgot Password?</Text>
+						<TouchableOpacity style={styles.forgotPass}>
+							<Text style={{ color: 'dodgerblue' }}>Forgot Password?</Text>
+						</TouchableOpacity>
+
 						<TouchableOpacity style={styles.buttonLogin}>
 							<Text style={{ fontSize: 18, color: 'dodgerblue', marginTop: 10 }}>LOGIN</Text>
 						</TouchableOpacity>
@@ -91,7 +94,6 @@ const styles = StyleSheet.create({
 		alignSelf: 'flex-end',
 		marginRight: 10,
 		marginTop: 10,
-		color: 'dodgerblue',
 	},
 	buttonLogin: {
 		alignItems: 'center',

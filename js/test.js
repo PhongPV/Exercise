@@ -1,32 +1,67 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
+const img = require('../img/example.jpg');
 
 export default class Test extends Component {
 	render() {
-		const shadowStyle = {
-			elevation: 5,
-			shadowOpacity: 0.5,
-			shadowOffset: { width: 0, height: 2 },
-			shadowColor: 'red',
-		};
 		return (
-			<View style={styles.container}>
-				<TouchableOpacity style={[styles.image, shadowStyle]} />
+			<View style={{ flex: 1, alignItems: 'center' }}>
+				<View style={styles.wrapForm}>
+					<Image source={img} style={{ width: 300 }} />
+					<Text style={[styles.title, { fontWeight: 'bold' }]}>GRILLE6- Steakhouse</Text>
+					<Text style={styles.information}>106 Hào Nam Kèo Dài, Quận ...</Text>
+					<View style={styles.line} />
+					<View style={styles.wrapNotify}>
+						<View style={styles.notify}>
+							<Entypo name="attachment" size={16} />
+						</View>
+						<Text style={{ marginLeft: 10, fontWeight: 'bold' }}>Cả ngày - Giảm 10%</Text>
+					</View>
+				</View>
 			</View>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
+const styles = {
+	wrapForm: {
+		width: 300,
+		height: 350,
+		marginTop: 100,
+		shadowOpacity: 0.5,
+		shadowRadius: 1,
+		elevation: 3,
+		borderRadius: 1,
+	},
+	title: {
+		marginLeft: 10,
+		fontSize: 18,
+		marginTop: 15,
+	},
+	line: {
+		width: 300,
+		height: 2,
+		backgroundColor: 'gray',
+		marginTop: 10,
+	},
+	wrapNotify: {
+		marginLeft: 10,
+		flexDirection: 'row',
 		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
+		marginTop: 10,
 	},
-	image: {
-		width: 100,
-		height: 100,
-		backgroundColor: 'dodgerblue',
+	information: {
+		marginLeft: 10,
+		color: 'gray',
+		marginTop: 10,
 	},
-});
+	notify: {
+		width: 30,
+		height: 30,
+		borderRadius: 15,
+		backgroundColor: 'red',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+};
