@@ -9,7 +9,7 @@ export default class Contact extends Component {
 			<View>
 				<View style={styles.wrapOrWith}>
 					<View style={{ backgroundColor: 'gray', width: 100, height: 2, marginRight: 5 }} />
-					<Text>Or with</Text>
+					<Text style={{ color: '#808080', fontSize: 15 }}>Or with</Text>
 					<View style={{ backgroundColor: 'gray', width: 100, height: 2, marginLeft: 5 }} />
 				</View>
 
@@ -21,14 +21,14 @@ export default class Contact extends Component {
 						<FontAwesome name="google-plus" color="red" size={16} />
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.contact}>
-						<FontAwesome name="twitter" color="dodgerblue" size={16} />
+						<FontAwesome name="twitter" color="#00ffff" size={16} />
 					</TouchableOpacity>
 				</View>
 
 				<View style={styles.register}>
-					<Text>Don't have an account?</Text>
+					<Text style={{ color: '#808080' }}>Don't have an account?</Text>
 					<TouchableOpacity onPress={() => navigation.navigate(`${this.props.name}`)}>
-						<Text style={{ color: 'dodgerblue' }}> {this.props.name}</Text>
+						<Text style={{ color: 'dodgerblue', fontWeight: 'bold' }}> {this.props.name}</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 		borderRadius: 25,
 		alignItems: 'center',
 		justifyContent: 'center',
-		elevation: 3,
+		elevation: 1,
 		shadowOpacity: 0.5,
 	},
 	register: {

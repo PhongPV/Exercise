@@ -4,6 +4,6 @@ import Home from './js/Home';
 import { StackNavigation } from './js/Router';
 export default class App extends React.Component {
 	render() {
-		return <Home />;
+		return <StackNavigation />;
 	}
 }

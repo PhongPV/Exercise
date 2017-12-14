@@ -10,13 +10,13 @@ export default class Register extends Component {
 			<View style={styles.container}>
 				<View style={styles.formRegister}>
 					<View style={styles.title}>
-						<Text style={{ marginLeft: 10 }}>REGISTER</Text>
+						<Text style={{ marginLeft: 10, fontWeight: 'bold' }}>REGISTER</Text>
 						<View style={{ flexDirection: 'row', marginRight: 10 }}>
 							<Ionicons color="dodgerblue" name="md-person-add" size={18} />
 							<Text style={{ color: 'dodgerblue', marginLeft: 5 }}>Profile Pie</Text>
 						</View>
 					</View>
-					<Text style={{ marginLeft: 10, marginTop: 10 }}>Name</Text>
+					<Text style={styles.textStyle}>Name</Text>
 					<View style={styles.inputWrap}>
 						<MaterialIcons style={{ marginLeft: 10 }} color="dodgerblue" name="person" size={16} />
 						<TextInput
@@ -25,7 +25,7 @@ export default class Register extends Component {
 							underlineColorAndroid="transparent"
 						/>
 					</View>
-					<Text style={{ marginLeft: 10, marginTop: 10 }}>Phone Number</Text>
+					<Text style={styles.textStyle}>Phone Number</Text>
 					<View style={styles.inputWrap}>
 						<FontAwesome style={{ marginLeft: 10 }} color="dodgerblue" name="phone" size={18} />
 						<TextInput
@@ -34,7 +34,7 @@ export default class Register extends Component {
 							underlineColorAndroid="transparent"
 						/>
 					</View>
-					<Text style={{ marginLeft: 10, marginTop: 10 }}>Email</Text>
+					<Text style={styles.textStyle}>Email</Text>
 					<View style={styles.inputWrap}>
 						<MaterialCommunityIcons
 							style={{ marginLeft: 10 }}
@@ -48,7 +48,7 @@ export default class Register extends Component {
 							underlineColorAndroid="transparent"
 						/>
 					</View>
-					<Text style={{ marginLeft: 10, marginTop: 10 }}>Password</Text>
+					<Text style={styles.textStyle}>Password</Text>
 					<View style={styles.inputWrap}>
 						<Ionicons style={{ marginLeft: 13 }} color="dodgerblue" name="ios-lock" size={18} />
 						<TextInput
@@ -58,7 +58,9 @@ export default class Register extends Component {
 						/>
 					</View>
 					<TouchableOpacity style={styles.buttonRegister}>
-						<Text style={{ color: 'dodgerblue', marginTop: 15 }}>REGISTER</Text>
+						<Text style={{ color: 'dodgerblue', marginTop: 15, fontWeight: 'bold', fontSize: 18 }}>
+							REGISTER
+						</Text>
 					</TouchableOpacity>
 				</View>
 				<Contact name="Login" navigation={this.props.navigation} />
@@ -73,6 +75,11 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	textStyle: {
+		color: '#808080',
+		marginLeft: 10,
+		marginTop: 10,
 	},
 	formRegister: {
 		shadowOpacity: 0.5,
@@ -89,7 +96,7 @@ const styles = StyleSheet.create({
 	inputWrap: {
 		height: 35,
 		flexDirection: 'row',
-		borderRadius: 2,
+		borderRadius: 5,
 		width: 300,
 		borderWidth: 0.3,
 		borderColor: '#000000',
