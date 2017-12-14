@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { MaterialCommunityIcons, Ionicons, FontAwesome, SimpleLineIcons } from '@expo/vector-icons';
 import Contact from './Contact';
+
+const { width, height } = Dimensions.get('window');
 
 export default class Login extends Component {
 	render() {
 		const navigation = this.props.navigation;
 		return (
-			<View style={{ flex: 1, backgroundColor: '#FFF', alignItems: 'center' }}>
+			<View style={styles.container}>
 				<View style={styles.wrapImage}>
-					<SimpleLineIcons style={{ fontWeight: '0.2' }} color="dodgerblue" name="handbag" size={55} />
+					<SimpleLineIcons color="dodgerblue" name="bag" size={55} />
 				</View>
-				<View style={{ width: 320, height: 320, borderRadius: 7, elevation: 3 }}>
-					<View style={{ marginLeft: 10, marginTop: 60 }}>
-						<Text style={styles.textStyle}>LOGIN</Text>
-						<Text style={{ marginTop: 10, color: '#808080' }}>Email</Text>
+				<View style={styles.wrapFormLogin}>
+					<View style={styles.formLogin}>
+						<Text style={styles.loginText}>LOGIN</Text>
+						<Text style={styles.emailText}>Email</Text>
 						<View style={styles.inputWrap}>
 							<MaterialCommunityIcons
 								style={{ marginLeft: 10 }}
@@ -23,33 +25,32 @@ export default class Login extends Component {
 								size={16}
 							/>
 							<TextInput
-								style={{ marginLeft: 15, width: 200 }}
+								keyboardType={'email-address'}
+								style={styles.inputText}
 								placeholder="Enter email"
 								underlineColorAndroid="transparent"
 							/>
 						</View>
-						<Text style={{ marginTop: 10, color: '#808080' }}>Password</Text>
+						<Text style={styles.passwordText}>Password</Text>
 						<View style={styles.inputWrap}>
 							<Ionicons style={{ marginLeft: 13 }} color="dodgerblue" name="ios-lock" size={18} />
 							<TextInput
-								style={{ marginLeft: 16, width: 200 }}
+								secureTextEntry={true}
+								style={styles.inputText}
 								placeholder="Enter password"
 								underlineColorAndroid="transparent"
 							/>
 						</View>
 						<TouchableOpacity style={styles.forgotPass}>
-							<Text style={{ color: 'dodgerblue', fontWeight: 'bold', fontSize: 12 }}>
-								Forgot Password?
-							</Text>
+							<Text style={styles.forgotText}>Forgot Password?</Text>
 						</TouchableOpacity>
 
 						<TouchableOpacity style={styles.buttonLogin} onPress={() => navigation.navigate('Home')}>
-							<Text style={{ fontSize: 18, color: 'dodgerblue', marginTop: 10, fontWeight: 'bold' }}>
-								LOGIN
-							</Text>
+							<Text style={styles.loginTextButton}>LOGIN</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
+				<View style={styles.viewChild} />
 				<Contact name="Register" navigation={this.props.navigation} />
 			</View>
 		);
@@ -57,34 +58,77 @@ export default class Login extends Component {
 }
 
 const styles = {
+	container: {
+		flex: 1,
+		backgroundColor: '#FFF',
+		alignItems: 'center',
+	},
+	wrapFormLogin: {
+		width: 8 * width / 9,
+		height: 17 * height / 32,
+		borderRadius: 7,
+		elevation: 3,
+	},
+	formLogin: {
+		marginLeft: 15,
+		marginTop: 40,
+	},
 	wrapImage: {
 		backgroundColor: '#FFF',
-		width: 100,
-		height: 100,
+		width: 5 * width / 18,
+		height: 5 * height / 32,
 		alignItems: 'center',
 		justifyContent: 'center',
 		shadowOpacity: 0.5,
 		shadowRadius: 1,
 		elevation: 3,
 		borderRadius: 50,
-		top: 50,
+		top: 5 * height / 64,
 		zIndex: 9900,
 	},
-	image: {
-		width: 60,
-		height: 60,
-		tintColor: 'dodgerblue',
+	emailText: {
+		marginTop: 15,
+		color: '#808080',
 	},
-	textStyle: {
+	passwordText: {
+		marginTop: 15,
+		color: '#808080',
+	},
+	forgotText: {
+		color: 'dodgerblue',
+		fontWeight: 'bold',
+		fontSize: 12,
+	},
+	loginText: {
 		fontSize: 18,
 		alignItems: 'flex-start',
 		fontWeight: 'bold',
+	},
+	viewChild: {
+		backgroundColor: '#FFF',
+		borderBottomLeftRadius: 7,
+		borderBottomRightRadius: 7,
+		width: 29 * width / 36,
+		height: 20,
+		shadowOpacity: 0.5,
+		shadowRadius: 1,
+		elevation: 1,
+	},
+	loginTextButton: {
+		fontSize: 18,
+		color: 'dodgerblue',
+		fontWeight: 'bold',
+		marginTop: 50,
+	},
+	inputText: {
+		marginLeft: 16,
+		width: 29 * width / 36,
 	},
 	inputWrap: {
 		height: 35,
 		flexDirection: 'row',
 		borderRadius: 5,
-		width: 300,
+		width: 29 * width / 36,
 		borderWidth: 0.3,
 		borderColor: '#000000',
 		alignItems: 'center',

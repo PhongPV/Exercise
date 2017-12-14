@@ -14,8 +14,16 @@ export const StackNavigation = StackNavigator({
 	},
 	Home: {
 		screen: Home,
+		navigationOptions: {
+			header: null,
+		},
 	},
 	Register: {
 		screen: Register,
+		navigationOptions: {
+			headerStyle: {
+				height: 40,
+			},
+		},
 	},
 });

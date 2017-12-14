@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+
+const { width, height } = Dimensions.get('window');
 
 export default class Contact extends Component {
 	render() {
 		const navigation = this.props.navigation;
 		return (
-			<View>
+			<View style={styles.container}>
 				<View style={styles.wrapOrWith}>
-					<View style={{ backgroundColor: 'gray', width: 100, height: 2, marginRight: 5 }} />
-					<Text style={{ color: '#808080', fontSize: 15 }}>Or with</Text>
-					<View style={{ backgroundColor: 'gray', width: 100, height: 2, marginLeft: 5 }} />
+					<View style={styles.lineOne} />
+					<Text style={styles.orWithText}>Or with</Text>
+					<View style={styles.lineTwo} />
 				</View>
 
 				<View style={styles.wrapContact}>
@@ -28,7 +30,7 @@ export default class Contact extends Component {
 				<View style={styles.register}>
 					<Text style={{ color: '#808080' }}>Don't have an account?</Text>
 					<TouchableOpacity onPress={() => navigation.navigate(`${this.props.name}`)}>
-						<Text style={{ color: 'dodgerblue', fontWeight: 'bold' }}> {this.props.name}</Text>
+						<Text style={styles.textLoginRegister}> {this.props.name}</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -36,7 +38,10 @@ export default class Contact extends Component {
 	}
 }
 
-const styles = StyleSheet.create({
+const styles = {
+	container: {
+		alignContent: 'space-between',
+	},
 	wrapOrWith: {
 		flexDirection: 'row',
 		alignItems: 'center',
@@ -45,22 +50,42 @@ const styles = StyleSheet.create({
 	},
 	wrapContact: {
 		flexDirection: 'row',
-		width: 250,
+		width: 5 * width / 6,
 		justifyContent: 'space-around',
 		marginTop: 10,
 	},
 	contact: {
-		width: 50,
-		height: 50,
-		borderRadius: 25,
+		width: 5 * width / 36,
+		height: 5 * height / 64,
+		borderRadius: 5 * width / 64,
 		alignItems: 'center',
 		justifyContent: 'center',
 		elevation: 1,
 		shadowOpacity: 0.5,
 	},
+	lineOne: {
+		backgroundColor: 'gray',
+		width: 11 * width / 36,
+		height: 2,
+		marginRight: 5,
+	},
+	lineTwo: {
+		backgroundColor: 'gray',
+		width: 11 * width / 36,
+		height: 2,
+		marginLeft: 5,
+	},
+	orWithText: {
+		color: '#808080',
+		fontSize: 17,
+	},
+	textLoginRegister: {
+		color: 'dodgerblue',
+		fontWeight: 'bold',
+	},
 	register: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 30,
+		marginTop: 40,
 	},
-});
+};

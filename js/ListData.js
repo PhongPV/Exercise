@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
-import { View, Text, Image, FlatList, Dimensions } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
-const img = require('../img/example.jpg');
+import { View, Text, Image, FlatList, Dimensions, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 export default class ListData extends Component {
 	renderItem = ({ item }) => {
 		return (
 			<View style={styles.wrapForm}>
-				<Image source={{ uri: `${item.Avatar}` }} style={{ width: width, height: 200 }} />
-				<Text style={[styles.title, { fontWeight: 'bold' }]}>{item.Name}</Text>
-				<Text style={styles.information}>{item.Address}</Text>
+				<Image source={{ uri: `${item.Avatar}` }} style={styles.image} />
+				<TouchableOpacity>
+					<Text style={[styles.title, { fontWeight: 'bold' }]}>{item.Name}</Text>
+				</TouchableOpacity>
+				<Text style={styles.information} numberOfLines={1}>
+					{item.Address}
+				</Text>
 				<View style={styles.line} />
 				<View style={styles.wrapNotify}>
 					<View style={styles.notify}>
-						<Entypo name="attachment" size={16} />
+						<FontAwesome name="tag" color="white" size={16} />
 					</View>
-					<Text style={{ marginLeft: 10, fontWeight: 'bold' }}>{item.DealInfo}</Text>
+					<Text style={styles.dealInfo}>{item.DealInfo}</Text>
 				</View>
 			</View>
 		);
@@ -24,7 +27,7 @@ export default class ListData extends Component {
 
 	render() {
 		return (
-			<View style={{ flex: 1, alignItems: 'center' }}>
+			<View style={styles.wrapList}>
 				{this.props.data.length === 0 ? (
 					<Text>Loading ...</Text>
 				) : (
@@ -36,14 +39,28 @@ export default class ListData extends Component {
 }
 
 const styles = {
-	wrapForm: {
+	wrapList: {
+		flex: 1,
+		alignItems: 'center',
+	},
+	dealInfo: {
+		marginLeft: 10,
+		fontWeight: 'bold',
+	},
+	image: {
 		width: width,
-		height: 350,
-		marginTop: 30,
+		height: 5 * height / 16,
+	},
+	wrapForm: {
+		width: 17 * width / 18,
+		marginTop: 10,
+		marginBottom: 10,
 		shadowOpacity: 0.5,
 		shadowRadius: 1,
-		elevation: 3,
+		elevation: 4,
 		borderRadius: 1,
+		borderWidth: 0.3,
+		backgroundColor: '#e3f2fd',
 	},
 	title: {
 		marginLeft: 10,
@@ -53,17 +70,19 @@ const styles = {
 	line: {
 		width: width,
 		height: 2,
-		backgroundColor: 'gray',
+		backgroundColor: '#c5cae9',
 		marginTop: 10,
 	},
 	wrapNotify: {
-		marginLeft: 10,
+		marginLeft: 14,
 		flexDirection: 'row',
 		alignItems: 'center',
 		marginTop: 10,
+		marginBottom: 10,
 	},
 	information: {
-		marginLeft: 10,
+		marginLeft: 14,
+		width: 5 * width / 6,
 		color: 'gray',
 		marginTop: 10,
 	},

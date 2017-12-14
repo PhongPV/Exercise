@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 
 import { Ionicons, MaterialCommunityIcons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import Contact from './Contact';
+
+const { width, height } = Dimensions.get('window');
 
 export default class Register extends Component {
 	render() {
@@ -10,17 +12,17 @@ export default class Register extends Component {
 			<View style={styles.container}>
 				<View style={styles.formRegister}>
 					<View style={styles.title}>
-						<Text style={{ marginLeft: 10, fontWeight: 'bold' }}>REGISTER</Text>
-						<View style={{ flexDirection: 'row', marginRight: 10 }}>
+						<Text style={styles.registerText}>REGISTER</Text>
+						<View style={styles.wrapProfile}>
 							<Ionicons color="dodgerblue" name="md-person-add" size={18} />
-							<Text style={{ color: 'dodgerblue', marginLeft: 5 }}>Profile Pie</Text>
+							<Text style={styles.profileText}>Profile Pie</Text>
 						</View>
 					</View>
 					<Text style={styles.textStyle}>Name</Text>
 					<View style={styles.inputWrap}>
 						<MaterialIcons style={{ marginLeft: 10 }} color="dodgerblue" name="person" size={16} />
 						<TextInput
-							style={{ marginLeft: 15, width: 200 }}
+							style={styles.inputText}
 							placeholder="Enter name"
 							underlineColorAndroid="transparent"
 						/>
@@ -29,7 +31,7 @@ export default class Register extends Component {
 					<View style={styles.inputWrap}>
 						<FontAwesome style={{ marginLeft: 10 }} color="dodgerblue" name="phone" size={18} />
 						<TextInput
-							style={{ marginLeft: 15, width: 200 }}
+							style={styles.inputText}
 							placeholder="Enter number"
 							underlineColorAndroid="transparent"
 						/>
@@ -43,7 +45,7 @@ export default class Register extends Component {
 							size={16}
 						/>
 						<TextInput
-							style={{ marginLeft: 15, width: 200 }}
+							style={styles.inputText}
 							placeholder="Enter email"
 							underlineColorAndroid="transparent"
 						/>
@@ -58,11 +60,10 @@ export default class Register extends Component {
 						/>
 					</View>
 					<TouchableOpacity style={styles.buttonRegister}>
-						<Text style={{ color: 'dodgerblue', marginTop: 15, fontWeight: 'bold', fontSize: 18 }}>
-							REGISTER
-						</Text>
+						<Text style={styles.registerTextButton}>REGISTER</Text>
 					</TouchableOpacity>
 				</View>
+				<View style={styles.viewChild} />
 				<Contact name="Login" navigation={this.props.navigation} />
 			</View>
 		);
@@ -87,6 +88,38 @@ const styles = StyleSheet.create({
 		elevation: 3,
 		width: 320,
 		height: 400,
+	},
+	viewChild: {
+		backgroundColor: '#FFF',
+		borderBottomLeftRadius: 7,
+		borderBottomRightRadius: 7,
+		width: 29 * width / 36,
+		height: 20,
+		shadowOpacity: 0.5,
+		shadowRadius: 1,
+		elevation: 1,
+	},
+	inputText: {
+		marginLeft: 15,
+		width: 200,
+	},
+	registerText: {
+		marginLeft: 10,
+		fontWeight: 'bold',
+	},
+	wrapProfile: {
+		flexDirection: 'row',
+		marginRight: 10,
+	},
+	profileText: {
+		color: 'dodgerblue',
+		marginLeft: 5,
+	},
+	registerTextButton: {
+		color: 'dodgerblue',
+		marginTop: 15,
+		fontWeight: 'bold',
+		fontSize: 18,
 	},
 	title: {
 		marginTop: 10,
