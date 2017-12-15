@@ -86,7 +86,7 @@ export default class Register extends Component {
 				<Contact />
 				<View style={styles.register}>
 					<Text style={{ color: '#808080' }}>Don't have an account?</Text>
-					<TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+					<TouchableOpacity onPress={() => this.props.navigation.goBack()}>
 						<Text style={styles.textLoginRegister}> Login</Text>
 					</TouchableOpacity>
 				</View>
@@ -108,7 +108,7 @@ const styles = {
 		marginTop: 10,
 	},
 	formRegister: {
-		flex: 4.5,
+		flex: 5,
 		width: '100%',
 		shadowOpacity: 0.5,
 		marginTop: 10,
