@@ -6,12 +6,15 @@ import Contact from './Contact';
 const { width, height } = Dimensions.get('window');
 
 export default class Login extends Component {
+	state = {
+		isShow: true,
+	};
 	render() {
 		const navigation = this.props.navigation;
 		return (
 			<View style={styles.container}>
 				<View style={styles.wrapImage}>
-					<SimpleLineIcons color="dodgerblue" name="bag" size={55} />
+					<SimpleLineIcons color="#29b6f6" name="bag" size={55} />
 				</View>
 				<View style={styles.wrapFormLogin}>
 					<View style={styles.formLogin}>
@@ -19,13 +22,12 @@ export default class Login extends Component {
 						<Text style={styles.emailText}>Email</Text>
 						<View style={styles.inputWrap}>
 							<MaterialCommunityIcons
-								style={{ marginLeft: 10 }}
+								style={styles.iconStyle}
 								color="dodgerblue"
 								name="email-open-outline"
 								size={16}
 							/>
 							<TextInput
-								keyboardType={'email-address'}
 								style={styles.inputText}
 								placeholder="Enter email"
 								underlineColorAndroid="transparent"
@@ -33,25 +35,43 @@ export default class Login extends Component {
 						</View>
 						<Text style={styles.passwordText}>Password</Text>
 						<View style={styles.inputWrap}>
-							<Ionicons style={{ marginLeft: 13 }} color="dodgerblue" name="ios-lock" size={18} />
+							<Ionicons style={styles.iconStyle} color="dodgerblue" name="ios-lock" size={18} />
 							<TextInput
-								secureTextEntry={true}
+								secureTextEntry={this.state.isShow}
 								style={styles.inputText}
 								placeholder="Enter password"
 								underlineColorAndroid="transparent"
 							/>
+							<TouchableOpacity
+								style={styles.wrapShowPass}
+								onPress={() => {
+									this.setState({ isShow: !this.state.isShow });
+								}}
+							>
+								{this.state.isShow == true ? (
+									<Ionicons color="dodgerblue" name="ios-eye" size={18} />
+								) : (
+									<Ionicons color="dodgerblue" name="ios-eye-off" size={18} />
+								)}
+								<Text style={styles.textShow}>Show</Text>
+							</TouchableOpacity>
 						</View>
 						<TouchableOpacity style={styles.forgotPass}>
 							<Text style={styles.forgotText}>Forgot Password?</Text>
 						</TouchableOpacity>
-
-						<TouchableOpacity style={styles.buttonLogin} onPress={() => navigation.navigate('Home')}>
-							<Text style={styles.loginTextButton}>LOGIN</Text>
-						</TouchableOpacity>
 					</View>
+					<TouchableOpacity style={styles.buttonLogin} onPress={() => navigation.navigate('Home')}>
+						<Text style={styles.loginTextButton}>LOGIN</Text>
+					</TouchableOpacity>
 				</View>
 				<View style={styles.viewChild} />
-				<Contact name="Register" navigation={this.props.navigation} />
+				<Contact />
+				<View style={styles.register}>
+					<Text style={{ color: '#808080' }}>Don't have an account?</Text>
+					<TouchableOpacity onPress={() => navigation.navigate('Register')}>
+						<Text style={styles.textLoginRegister}> Register</Text>
+					</TouchableOpacity>
+				</View>
 			</View>
 		);
 	}
@@ -60,31 +80,43 @@ export default class Login extends Component {
 const styles = {
 	container: {
 		flex: 1,
+		paddingHorizontal: 20,
 		backgroundColor: '#FFF',
 		alignItems: 'center',
 	},
 	wrapFormLogin: {
-		width: 8 * width / 9,
-		height: 17 * height / 32,
+		paddingHorizontal: 10,
+		width: '100%',
+		alignItems: 'center',
+		flex: 3,
 		borderRadius: 7,
 		elevation: 3,
 	},
 	formLogin: {
-		marginLeft: 15,
 		marginTop: 40,
 	},
 	wrapImage: {
 		backgroundColor: '#FFF',
-		width: 5 * width / 18,
-		height: 5 * height / 32,
+		width: 100,
+		height: 100,
 		alignItems: 'center',
 		justifyContent: 'center',
 		shadowOpacity: 0.5,
 		shadowRadius: 1,
 		elevation: 3,
 		borderRadius: 50,
-		top: 5 * height / 64,
+		top: 50,
 		zIndex: 9900,
+	},
+	wrapShowPass: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		marginHorizontal: 10,
+	},
+	textShow: {
+		fontSize: 10,
+		color: 'dodgerblue',
+		marginLeft: 3,
 	},
 	emailText: {
 		marginTop: 15,
@@ -108,41 +140,53 @@ const styles = {
 		backgroundColor: '#FFF',
 		borderBottomLeftRadius: 7,
 		borderBottomRightRadius: 7,
-		width: 29 * width / 36,
+		width: '90%',
 		height: 20,
 		shadowOpacity: 0.5,
 		shadowRadius: 1,
 		elevation: 1,
 	},
-	loginTextButton: {
-		fontSize: 18,
-		color: 'dodgerblue',
-		fontWeight: 'bold',
-		marginTop: 50,
-	},
 	inputText: {
-		marginLeft: 16,
-		width: 29 * width / 36,
+		flex: 1,
 	},
 	inputWrap: {
+		width: '100%',
 		height: 35,
 		flexDirection: 'row',
 		borderRadius: 5,
-		width: 29 * width / 36,
 		borderWidth: 0.3,
 		borderColor: '#000000',
 		alignItems: 'center',
+		justifyContent: 'center',
 		marginTop: 10,
 	},
 	forgotPass: {
 		alignSelf: 'flex-end',
-		marginRight: 10,
 		marginTop: 10,
 	},
 	buttonLogin: {
-		alignItems: 'center',
-		justifyContent: 'center',
 		elevation: 3,
 		shadowOpacity: 0.5,
+		position: 'absolute',
+		alignSelf: 'center',
+		bottom: 15,
+	},
+	loginTextButton: {
+		fontSize: 18,
+		color: 'dodgerblue',
+		fontWeight: 'bold',
+	},
+	textLoginRegister: {
+		color: 'dodgerblue',
+		fontWeight: 'bold',
+	},
+	register: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		position: 'absolute',
+		bottom: 10,
+	},
+	iconStyle: {
+		marginHorizontal: 10,
 	},
 };

@@ -7,6 +7,9 @@ import Contact from './Contact';
 const { width, height } = Dimensions.get('window');
 
 export default class Register extends Component {
+	state = {
+		isShow: true,
+	};
 	render() {
 		return (
 			<View style={styles.container}>
@@ -15,12 +18,14 @@ export default class Register extends Component {
 						<Text style={styles.registerText}>REGISTER</Text>
 						<View style={styles.wrapProfile}>
 							<Ionicons color="dodgerblue" name="md-person-add" size={18} />
-							<Text style={styles.profileText}>Profile Pie</Text>
+							<TouchableOpacity>
+								<Text style={styles.profileText}>Profile Pie</Text>
+							</TouchableOpacity>
 						</View>
 					</View>
 					<Text style={styles.textStyle}>Name</Text>
 					<View style={styles.inputWrap}>
-						<MaterialIcons style={{ marginLeft: 10 }} color="dodgerblue" name="person" size={16} />
+						<MaterialIcons style={styles.iconStyle} color="dodgerblue" name="person" size={16} />
 						<TextInput
 							style={styles.inputText}
 							placeholder="Enter name"
@@ -29,7 +34,7 @@ export default class Register extends Component {
 					</View>
 					<Text style={styles.textStyle}>Phone Number</Text>
 					<View style={styles.inputWrap}>
-						<FontAwesome style={{ marginLeft: 10 }} color="dodgerblue" name="phone" size={18} />
+						<FontAwesome style={styles.iconStyle} color="dodgerblue" name="phone" size={18} />
 						<TextInput
 							style={styles.inputText}
 							placeholder="Enter number"
@@ -39,7 +44,7 @@ export default class Register extends Component {
 					<Text style={styles.textStyle}>Email</Text>
 					<View style={styles.inputWrap}>
 						<MaterialCommunityIcons
-							style={{ marginLeft: 10 }}
+							style={styles.iconStyle}
 							color="dodgerblue"
 							name="email-open-outline"
 							size={16}
@@ -52,30 +57,50 @@ export default class Register extends Component {
 					</View>
 					<Text style={styles.textStyle}>Password</Text>
 					<View style={styles.inputWrap}>
-						<Ionicons style={{ marginLeft: 13 }} color="dodgerblue" name="ios-lock" size={18} />
+						<Ionicons style={styles.iconStyle} color="dodgerblue" name="ios-lock" size={18} />
 						<TextInput
-							style={{ marginLeft: 16, width: 200 }}
+							secureTextEntry={this.state.isShow}
+							style={styles.inputText}
 							placeholder="Enter password"
 							underlineColorAndroid="transparent"
 						/>
+						<TouchableOpacity
+							style={styles.wrapShowPass}
+							onPress={() => {
+								this.setState({ isShow: !this.state.isShow });
+							}}
+						>
+							{this.state.isShow == true ? (
+								<Ionicons color="dodgerblue" name="ios-eye" size={18} />
+							) : (
+								<Ionicons color="dodgerblue" name="ios-eye-off" size={18} />
+							)}
+							<Text style={styles.textShow}>Show</Text>
+						</TouchableOpacity>
 					</View>
 					<TouchableOpacity style={styles.buttonRegister}>
 						<Text style={styles.registerTextButton}>REGISTER</Text>
 					</TouchableOpacity>
 				</View>
 				<View style={styles.viewChild} />
-				<Contact name="Login" navigation={this.props.navigation} />
+				<Contact />
+				<View style={styles.register}>
+					<Text style={{ color: '#808080' }}>Don't have an account?</Text>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+						<Text style={styles.textLoginRegister}> Login</Text>
+					</TouchableOpacity>
+				</View>
 			</View>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
+const styles = {
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
 		alignItems: 'center',
-		justifyContent: 'center',
+		paddingHorizontal: 20,
 	},
 	textStyle: {
 		color: '#808080',
@@ -83,25 +108,37 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 	},
 	formRegister: {
+		flex: 4.5,
+		width: '100%',
 		shadowOpacity: 0.5,
+		marginTop: 10,
 		borderRadius: 7,
 		elevation: 3,
-		width: 320,
-		height: 400,
+		paddingHorizontal: 10,
 	},
 	viewChild: {
 		backgroundColor: '#FFF',
 		borderBottomLeftRadius: 7,
 		borderBottomRightRadius: 7,
-		width: 29 * width / 36,
+		width: '90%',
 		height: 20,
 		shadowOpacity: 0.5,
 		shadowRadius: 1,
 		elevation: 1,
 	},
 	inputText: {
-		marginLeft: 15,
-		width: 200,
+		flex: 1,
+	},
+	inputWrap: {
+		width: '100%',
+		height: 35,
+		flexDirection: 'row',
+		borderRadius: 5,
+		borderWidth: 0.3,
+		borderColor: '#000000',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginTop: 10,
 	},
 	registerText: {
 		marginLeft: 10,
@@ -115,6 +152,16 @@ const styles = StyleSheet.create({
 		color: 'dodgerblue',
 		marginLeft: 5,
 	},
+	wrapShowPass: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		marginHorizontal: 10,
+	},
+	textShow: {
+		fontSize: 10,
+		color: 'dodgerblue',
+		marginLeft: 3,
+	},
 	registerTextButton: {
 		color: 'dodgerblue',
 		marginTop: 15,
@@ -126,19 +173,21 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 	},
-	inputWrap: {
-		height: 35,
-		flexDirection: 'row',
-		borderRadius: 5,
-		width: 300,
-		borderWidth: 0.3,
-		borderColor: '#000000',
-		alignItems: 'center',
-		marginTop: 10,
-		marginLeft: 10,
-	},
 	buttonRegister: {
 		alignItems: 'center',
 		marginTop: 20,
 	},
-});
+	textLoginRegister: {
+		color: 'dodgerblue',
+		fontWeight: 'bold',
+	},
+	register: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		position: 'absolute',
+		bottom: 10,
+	},
+	iconStyle: {
+		marginHorizontal: 10,
+	},
+};

@@ -26,13 +26,6 @@ export default class Contact extends Component {
 						<FontAwesome name="twitter" color="#00ffff" size={16} />
 					</TouchableOpacity>
 				</View>
-
-				<View style={styles.register}>
-					<Text style={{ color: '#808080' }}>Don't have an account?</Text>
-					<TouchableOpacity onPress={() => navigation.navigate(`${this.props.name}`)}>
-						<Text style={styles.textLoginRegister}> {this.props.name}</Text>
-					</TouchableOpacity>
-				</View>
 			</View>
 		);
 	}
@@ -40,7 +33,7 @@ export default class Contact extends Component {
 
 const styles = {
 	container: {
-		alignContent: 'space-between',
+		flex: 2,
 	},
 	wrapOrWith: {
 		flexDirection: 'row',
@@ -50,7 +43,8 @@ const styles = {
 	},
 	wrapContact: {
 		flexDirection: 'row',
-		width: 5 * width / 6,
+		width: 5 * width / 9,
+		alignSelf: 'center',
 		justifyContent: 'space-around',
 		marginTop: 10,
 	},
@@ -78,14 +72,5 @@ const styles = {
 	orWithText: {
 		color: '#808080',
 		fontSize: 17,
-	},
-	textLoginRegister: {
-		color: 'dodgerblue',
-		fontWeight: 'bold',
-	},
-	register: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		marginTop: 40,
 	},
 };
