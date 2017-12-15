@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView } from 'react-native';
 
 import { Ionicons, MaterialCommunityIcons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import Contact from './Contact';
@@ -13,7 +13,7 @@ export default class Register extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<View style={styles.formRegister}>
+				<KeyboardAvoidingView style={styles.formRegister} behavior="height">
 					<View style={styles.title}>
 						<Text style={styles.registerText}>REGISTER</Text>
 						<View style={styles.wrapProfile}>
@@ -81,15 +81,17 @@ export default class Register extends Component {
 					<TouchableOpacity style={styles.buttonRegister}>
 						<Text style={styles.registerTextButton}>REGISTER</Text>
 					</TouchableOpacity>
-				</View>
+				</KeyboardAvoidingView>
 				<View style={styles.viewChild} />
 				<Contact />
-				<View style={styles.register}>
-					<Text style={{ color: '#808080' }}>Don't have an account?</Text>
-					<TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-						<Text style={styles.textLoginRegister}> Login</Text>
-					</TouchableOpacity>
-				</View>
+				<KeyboardAvoidingView style={styles.wrapRegister} behavior="position">
+					<View style={styles.register}>
+						<Text style={{ color: '#808080' }}>Don't have an account?</Text>
+						<TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+							<Text style={styles.textLoginRegister}> Login</Text>
+						</TouchableOpacity>
+					</View>
+				</KeyboardAvoidingView>
 			</View>
 		);
 	}
@@ -174,18 +176,23 @@ const styles = {
 		justifyContent: 'space-between',
 	},
 	buttonRegister: {
-		alignItems: 'center',
-		marginTop: 20,
+		position: 'absolute',
+		alignSelf: 'center',
+		bottom: 15,
 	},
 	textLoginRegister: {
 		color: 'dodgerblue',
 		fontWeight: 'bold',
 	},
-	register: {
+	wrapRegister: {
 		flexDirection: 'row',
 		justifyContent: 'center',
 		position: 'absolute',
 		bottom: 10,
+	},
+	register: {
+		flexDirection: 'row',
+		justifyContent: 'center',
 	},
 	iconStyle: {
 		marginHorizontal: 10,
